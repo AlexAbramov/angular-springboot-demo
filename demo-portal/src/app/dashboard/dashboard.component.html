@@ -1,0 +1,35 @@
+<div fxFlexFill fxLayout="column">
+    <div fxFlex="50" fxLayout="row">
+        <div>
+            <h3>Trends</h3>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <line-chart [model]="lineChartModel"></line-chart>
+                <app-legend style="width:100px;margin-left:-30px;" [items]="lineChartModel.sequences"></app-legend>
+            </div>
+        </div>
+        <div>
+            <h3>Sales</h3>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <bar-chart [model]="barChartModel"></bar-chart>
+            </div>
+        </div>
+        <div>
+            <h3>Market</h3>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <bubble-chart [model]="bubbleChartModel"></bubble-chart>
+                <button mat-raised-button color="primary" (click)="animate()">{{isAnimated?"Pause":"Start"}}</button>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="50" fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex>
+            <h3>Companies</h3>
+            <app-companies [items]="companies" (rowSelect)="rowSelect($event)">
+            </app-companies>
+        </div>
+        <div fxFlex="300px" fxLayout="column" fxLayoutAlign="center center">
+            <pie-chart [model]="pieChartModel" [selItem]="selCompany" (itemClick)="pieChartClick($event)"></pie-chart>
+            <app-legend style="width:300px;" [items]="pieChartModel.items"></app-legend>
+        </div>
+    </div>
+</div>

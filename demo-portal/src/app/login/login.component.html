@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"><mat-icon>person_outline</mat-icon><span>Login</span></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form fxLayout="column" #loginForm="ngForm">
+                <mat-form-field>
+                    <input matInput placeholder="Username" minlength="1" [(ngModel)]="cred.name" name="name" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Password" minlength="1" [(ngModel)]="cred.psw" type="password" name="psw"
+                        required>
+                </mat-form-field>
+            </form>
+            <div style="min-height:30px; min-width:300px;">
+                <h3 *ngIf="errorMessage" style="color: red;">{{errorMessage}}</h3>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <!--mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner-->
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <button type="submit" mat-raised-button [disabled]="!loginForm.form.valid" (click)="login()" color="primary">Login</button>
+            </div>
+            <div style="position: absolute" *ngIf="isBusy">
+                <mat-spinner diameter="100" color="primary" style="opacity: 0.5;"></mat-spinner>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

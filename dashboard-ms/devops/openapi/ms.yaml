@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: Dashboard API
+paths:
+  /companies:
+    get:
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResData"
+  /company:
+    get:
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChartData"
+components:
+  schemas:
+    CompanyData:
+      type: object
+      properties:
+        id:
+          type: int
+        name:
+          type: string
+        revenue:
+          type: number
+          format: double
+    ChartData:
+      type: object
+      properties:
+        xlabels:
+          type: array
+          items:
+            type: string
+        ylabels:
+          type: array
+          items:
+            type: string
+    ResData:
+      type: array
+      items:
+        $ref: "#/components/schemas/CompanyData"

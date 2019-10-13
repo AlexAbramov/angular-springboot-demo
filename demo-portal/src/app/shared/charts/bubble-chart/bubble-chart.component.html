@@ -1,0 +1,21 @@
+<svg style="width:500px; height:250px;" *ngIf="model" viewBox="-10 -10 220 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+    <rect x="0" y="0" width="200" height="100" stroke="lightGray" fill="white" />
+    <svg:text *ngIf="model" class='bg-text' x="100" y="50">{{model.text}}</svg:text>
+    <ng-container *ngFor="let l of model.ylabels; let i=index;">
+        <svg:g [attr.transform]="translate(0,100-100*i/(model.ylabels.length-1))" stroke="lightGray">
+            <line x1="-3" y1="0" x2="0" y2="0" />
+            <line x1="0" y1="0" x2="200" y2="0" style="stroke-dasharray: 10 2" />
+            <svg:text class='ylabel' x="-5" y="0">{{l}}</svg:text>
+        </svg:g>
+    </ng-container>
+    <ng-container *ngFor="let l of model.xlabels; let i=index;">
+        <svg:g [attr.transform]="translate(200*i/(model.xlabels.length-1), 100)" stroke="lightGray">
+            <line x1="0" y1="0" x2="0" y2="3" />
+            <svg:text class='xlabel' x="0" y="10">{{l}}</svg:text>
+        </svg:g>
+    </ng-container>
+    <ng-container *ngFor="let b of model.bubbles; let j=index">
+            <svg:circle [attr.fill]="b.c" [attr.cx]="b.x" [attr.cy]="100-b.y" [attr.r]="b.rad"></svg:circle>
+        <!--svg:text style="text-anchor:middle;font-size:8px;" [attr.x]="item.tx" [attr.y]="item.ty" fill="white">{{item.text}}</svg:text-->
+    </ng-container>    
+</svg>

@@ -1,0 +1,10 @@
+<div *ngIf='param' [ngSwitch]='1' fxFlex="300px">
+    <mat-form-field *ngSwitchCase="1">
+    </mat-form-field>                
+    <!--mat-checkbox *ngSwitchCase="2" [(ngModel)]="param.val"></mat-checkbox>
+    <mat-select *ngSwitchCase="3" [(ngModel)]="param.val">
+        <mat-option *ngFor="let op of opt" [value]="op">
+            {{op}}
+        </mat-option>
+    </mat-select-->
+</div>

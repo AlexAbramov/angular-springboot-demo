@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: Auth API
+paths:
+  /login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReqData"
+      responses:
+        200:
+          description:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResData"
+components:
+  schemas:
+    ReqData:
+      type: object
+      properties:
+        name:
+          type: string
+        psw:
+          type: string
+    ResData:
+      type: object
+      properties:
+        token:
+          type: string
+        msg:
+          type: string

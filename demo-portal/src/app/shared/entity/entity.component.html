@@ -1,0 +1,27 @@
+<form #entityForm="ngForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row wrap" *ngIf="entity && data" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutAlign="start center" *ngFor="let p of getVisibleParams()" [ngSwitch]='getControlType(p)'>
+            <div fxFlex="30px">
+                <mat-icon *ngIf="p.icon">{{p.icon}}</mat-icon>
+            </div>
+            <div fxFlex="300px">
+                <mat-form-field *ngSwitchCase="'input'">
+                    <input matInput [minlength]="p.min" [maxlength]="p.max" [placeholder]="p.name" [(ngModel)]="data[p.name]" [name]="p.name"
+                        [type]="getInputType(p)" [required]="p.req" [disabled]="readonly">
+                </mat-form-field>
+                <mat-checkbox *ngSwitchCase="'checkbox'" [(ngModel)]="data[p.name]" [name]="p.name" [disabled]="readonly">{{amendName(p.name)}}
+                </mat-checkbox>
+                <!--mat-select *ngSwitchCase="'select'" [value]="data[p.name]">
+                    <mat-option *ngFor="let op of opt" [value]="op">
+                        {{op}}
+                    </mat-option>
+                </mat-select-->
+            </div>
+        </div>
+    </div>
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <button mat-raised-button color="primary" [disabled]="!entityForm.form.valid || readonly" type="submit">Submit</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</form>

@@ -1,0 +1,7 @@
+<svg style="width:300px; height:300px;" *ngIf="model" viewBox="-10 -10 120 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+    <svg:circle cx="50" cy="50" r="50" stroke="gray" />
+    <ng-container *ngFor="let item of model.items">
+        <svg:path *ngIf="item.path" [ngClass]='getClass(item)' fill="green" [attr.fill]="item.color" [attr.d]="item.path" (click)="_itemClick(item)" ></svg:path>
+        <svg:text [ngClass]='getClass(item)' [attr.x]="item.tx" [attr.y]="item.ty" fill="white">{{item.text}}</svg:text>
+    </ng-container>    
+</svg>

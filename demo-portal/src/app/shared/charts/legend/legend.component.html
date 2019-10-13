@@ -1,0 +1,6 @@
+<div fxLayout="row wrap" fxLayoutGap="4px">
+    <div *ngFor="let item of items" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" fxFlex="80px">
+        <div style="width:12px;height:12px;" [style.backgroundColor]="item.color"></div>
+        <div>{{item.name}}</div>
+    </div>
+</div>

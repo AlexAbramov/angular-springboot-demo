@@ -1,0 +1,29 @@
+{
+    "-portalApi":"https://celnap.com/api/",
+    "authApi":"http://localhost:8081/",
+    "dashboardApi":"http://localhost:8082/",
+    "leftMenu":[
+        {
+            "text":"Dashboard",
+            "icon":"dashboard",
+            "path":"dashboard"
+        },
+        {
+            "text":"Users",
+            "icon":"group",
+            "path":"users"
+        },
+        {
+            "text":"Add User",
+            "icon":"person_add",
+            "path":"user"
+        },
+        {
+            "text":"About",
+            "icon":"info",
+            "path":"about"
+        }
+    ]
+}
+
+     

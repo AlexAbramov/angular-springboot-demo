@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.8.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'org.openapi.generator' version "4.1.2"
+}
+
+group = 'com.celnap'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+sourceSets.main.java.srcDirs=['build/generated/openapi/src/main/java','src/main/java']
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'com.auth0:java-jwt:3.8.3'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'org.openapitools:jackson-databind-nullable:0.2.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+compileJava{
+	dependsOn 'generateOpenApiServer'
+}
+
+task generateOpenApiServer(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask){
+	generatorName = "spring"
+	inputSpec = "${rootDir}/devops/openapi/ms.yaml".toString()
+	outputDir = "${buildDir}/generated/openapi".toString()
+	apiPackage = "com.celnap.demo.dashboard.api"
+	modelPackage = "com.celnap.demo.dashboard.model"
+	configOptions=[
+		java8: true,
+		interfaceOnly: true
+	]
+}

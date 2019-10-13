@@ -1,0 +1,55 @@
+<div fxFlexFill fxLayout="column">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <mat-icon>wb_cloudy</mat-icon>
+      <span style="margin: 20px;">Demo Portal</span>
+      <span *ngIf="isAuthenticated">
+        <button *ngFor="let item of topMenu" mat-button (click)="menuItemClick(item)">          
+          <mat-icon [ngClass]="isSelected(item)?'menu-item-selected':'menu-item-normal'" >{{item.icon}}</mat-icon>
+          <span style="margin-left: 5px;">{{item.text}}</span>
+        </button>
+      </span>
+      <!--button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button-->
+      <mat-menu>
+        <button mat-button>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-button>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voicemail</span>
+        </button>
+        <button mat-button>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+      <div fxFlex></div>
+      <div *ngIf="isAuthenticated">
+        <button mat-button (click)="logout()">          
+          <mat-icon style="color: white" >input</mat-icon>
+          <span style="margin-left: 5px;">Logout</span>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div fxLayout="row" fxFlex>
+    <div fxFlex="200px" *ngIf="isAuthenticated" style="background-color:#C5CAE9; padding: 10px;">
+        <button *ngFor="let item of leftMenu" mat-button (click)="menuItemClick(item)">          
+          <mat-icon [ngClass]="isSelected(item)?'menu-item-selected':'menu-item-normal'" >{{item.icon}}</mat-icon>
+          <span style="margin-left: 10px;font-size: 14pt;">{{item.text}}</span>
+        </button>
+    </div>
+    <div fxFlex style="margin-left:10px;">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  <mat-toolbar color="primary" style="height: 10px;">
+    <mat-toolbar-row>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <!--hr style="height:3px;" color="primary"-->
+</div>
